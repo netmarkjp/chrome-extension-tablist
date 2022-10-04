@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "List Tabs on same window",
+  "version": "0.9",
+  "icons": {},
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "host_permissions": [],
+  "permissions": ["tabs"]
+}
