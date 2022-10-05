@@ -1,0 +1,25 @@
+{
+  "name": "chrome-extension-tablist",
+  "version": "1.0.0",
+  "description": "# Install",
+  "main": "popup.js",
+  "scripts": {
+    "build": "rm -r dist/* || : ; npx tsc && cp -a files/* dist/."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netmarkjp/chrome-extension-tablist.git"
+  },
+  "keywords": [],
+  "author": "BABA Toshiaki <toshiaki@netmark.jp> (https://netmark.jp/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/netmarkjp/chrome-extension-tablist/issues"
+  },
+  "homepage": "https://github.com/netmarkjp/chrome-extension-tablist#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.0.197",
+    "@types/node": "^18.8.2",
+    "typescript": "^4.8.4"
+  }
+}

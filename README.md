@@ -10,3 +10,11 @@
 Just click the extension icon, in toolbar.
 
 LIST tab.title, tab.url FROM this.window ORDER BY tab.index ASC
+
+# Build
+
+```sh
+npm run build
+```
+
+`./dist` is the unpackaged extension directory.
