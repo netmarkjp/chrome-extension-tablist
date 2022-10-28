@@ -1,5 +1,5 @@
-export {};
-async function makeList(orderd: boolean) {
+export { };
+async function makeList(orderd: boolean, currentTabGroupId: number) {
   let tabs = await chrome.tabs.query({
     currentWindow: true,
   });
@@ -16,6 +16,9 @@ async function makeList(orderd: boolean) {
   const lines = [];
   let order = 0;
   for (const tab of tabs) {
+    if (tab.groupId !== currentTabGroupId) {
+      continue;
+    }
     let line = "";
     order++;
 
@@ -43,15 +46,25 @@ async function makeList(orderd: boolean) {
 function escapeMarkdownTitle(title: string): string {
   return title.replace(/\[/g, "\\[").replace(/\]/g, "\\]");
 }
-await makeList(false);
+
+async function getCurrentTabGroupId(): Promise<number> {
+  const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+  if (tabs.length > 0 && tabs[0] !== undefined) {
+    return tabs[0].groupId;
+  }
+  throw new Error("Current Active Tab Not found.");
+}
+
+
+await makeList(false, await getCurrentTabGroupId());
 
 document
   .getElementById("button-bullet")
   ?.addEventListener("click", async () => {
-    await makeList(false);
+    await makeList(false, await getCurrentTabGroupId());
   });
 document
   .getElementById("button-orderd")
   ?.addEventListener("click", async () => {
-    await makeList(true);
+    await makeList(true, await getCurrentTabGroupId());
   });
